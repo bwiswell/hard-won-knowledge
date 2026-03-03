@@ -146,6 +146,8 @@ That's it - you should be able to immediately start using your RPi as a LAN spea
 
 ## Fully-featured Spotify Client for Headless RPi
 
+#### This section was last updated in March 2026.
+
 Getting a fully-featured Spotify client to run on a headless system can be difficult due to the lack of an official Linux Spotify client and the need to authenticate through Spotify's website - something that is not typically possible through a terminal system alone. The solution described below uses [spotify_player](https://github.com/aome510/spotify-player) installed via [Cargo](https://github.com/rust-lang/cargo), [tmux](https://github.com/tmux/tmux), and [Carbonyl](https://github.com/fathyb/carbonyl) installed via [NPM](https://www.npmjs.com/) to achieve a visual browser with JavaScript support to enable authentication in the terminal while keeping the `spotify_player authenticate` process alive.
 
 ### Cargo
@@ -265,26 +267,15 @@ to open the Spotify client. Happy listening!
 
 ## Fully-featured Spotify Daemon for Headless RPi
 
+#### This section was last updated in March 2026.
+
 This is pretty easy - first, follow the steps above in [Fully-featured Spotify Client for Headless RPi](#fully-featured-spotify-client-for-headless-rpi) and make sure to use the `daemon` build option ([Daemon feature](#daemon-feature)).
 
-If you want to *manually* start the daemon every time, you can simply run `spotify_player -d`. If you want the daemon to automatically start on boot, you'll need to create a service `conf` file. First, create and open a new service file:
+Then you need to start the daemon and open the client:
 
 ```bash
-sudo nano /etc/systemd/system/spotify-player.service
+spotify_player -d
+spotify_player
 ```
 
-Add a single line to your new file:
-
-```toml
-ExecStart=/home/bwzlr/.cargo/bin/spotify_player
-```
-
-Save and exit `nano`. Then reload `systemd`, enable the service, and start it up:
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable spotify-player.service
-sudo systemctl start spotify-player.service
-```
-
-That should do it :)
+Start some music playing and then `Ctrl+C` out of the client - your music should keep playing. You can then use the `spotify_player playback` CLI to control the playback without reopening the client.

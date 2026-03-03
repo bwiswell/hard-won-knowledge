@@ -173,7 +173,7 @@ sudo apt update
 sudo apt install tmux
 ```
 
-This will come in handy in a few steps, so be sure to install it now.
+This will come in handy in a few steps.
 
 ### Carbonyl
 
